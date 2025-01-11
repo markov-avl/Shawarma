@@ -6,9 +6,8 @@ package ru.sccs.cooking.device;
  */
 public class Oven implements CookingDevice {
 
-    @Override
-    public void cook() {
-        System.out.println("Oven is cooking");
-    }
-
+  @Override
+  public void cook() {
+    System.out.println("Oven is cooking");
+  }
 }

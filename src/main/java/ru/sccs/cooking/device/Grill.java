@@ -5,9 +5,8 @@ package ru.sccs.cooking.device;
  */
 public class Grill implements CookingDevice {
 
-    @Override
-    public void cook() {
-        System.out.println("Grilling");
-    }
-
+  @Override
+  public void cook() {
+    System.out.println("Grilling");
+  }
 }

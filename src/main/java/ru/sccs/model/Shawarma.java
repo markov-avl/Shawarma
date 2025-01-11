@@ -1,18 +1,15 @@
 package ru.sccs.model;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import ru.sccs.cooking.ingredient.Ingredient;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 // TODO: pita?
 public class Shawarma {
 
-    private String name;
-
-    private List<Ingredient> ingredients;
-
+  private String name;
+  private List<Ingredient> ingredients;
 }
