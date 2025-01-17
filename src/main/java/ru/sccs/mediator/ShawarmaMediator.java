@@ -2,48 +2,39 @@ package ru.sccs.mediator;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import ru.sccs.command.AddIngredientCommand;
+import ru.sccs.actor.RecipeFormer;
 import ru.sccs.command.Chef;
-import ru.sccs.command.CookIngredientCommand;
-import ru.sccs.cooking.device.Grill;
-import ru.sccs.cooking.device.Oven;
-import ru.sccs.cooking.device.Pan;
-import ru.sccs.cooking.ingredient.Ingredient;
+import ru.sccs.command.Command;
+import ru.sccs.cooking.device.CookingDevice;
+import ru.sccs.factory.DeviceFactory;
 import ru.sccs.model.Order;
-import ru.sccs.model.Shawarma;
 
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShawarmaMediator implements Mediator {
 
-  private Grill grill = new Grill("Гриль");
+    private DeviceFactory deviceFactory = new DeviceFactory();
 
-  private Oven oven = new Oven("Духовка");
+    private Chef chef = new Chef();
 
-  private Pan pan = new Pan("Кастрюля");
+    public void cookShawarma(Order order) {
+        RecipeFormer.recipesOf(order).forEach((orderPosition, recipe) -> {
+            recipe.getSteps().forEach(step -> {
+                CookingDevice device = deviceFactory.getFreeDevice(step.getDeviceType());
+                Command command = step.getCommandMaker().apply(device);
+                chef.addCommand(command);
+            });
+            chef.prepareShawarma();
+        });
+    }
 
-  private Chef chef = new Chef();
+    @Override
+    public void packageShawarma() {
 
-  public void cookShawarma(Order order) {
-    // Находить рецепт для шаурмы, передавать туда шефа, возвращаться шефа с командами
-    order.getPositions().forEach(position -> {
-      Shawarma shawarma = position.getShawarma();
-      shawarma.getIngredients().forEach(ingredient -> {
-        chef.addCommand(new CookIngredientCommand(grill, ingredient));
-        chef.addCommand(new AddIngredientCommand(shawarma, ingredient));
-      });
-    });
+    }
 
-    chef.prepareShawarma();
-  }
+    @Override
+    public void packageOrder() {
 
-  @Override
-  public void packageShawarma() {
-
-  }
-
-  @Override
-  public void packageOrder() {
-
-  }
+    }
 }

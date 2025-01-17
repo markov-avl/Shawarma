@@ -1,29 +1,30 @@
 package ru.sccs.visitor;
 
-import ru.sccs.model.Menu;
+import ru.sccs.menu.Menu;
+import ru.sccs.menu.MenuDish;
 import ru.sccs.model.OrderPosition;
-import ru.sccs.model.Shawarma;
 
 public class PriceCalculator implements Visitor {
-  private final Menu menu;
 
-  public PriceCalculator(Menu menu) {
-    this.menu = menu;
-  }
+    private final Menu menu;
 
-  @Override
-  public double visit(OrderPosition position) {
-    Shawarma shawarma = position.getShawarma();
-    double basePrice = menu.getShawarmaPrices().getOrDefault(shawarma, 0.0);
+    public PriceCalculator(Menu menu) {
+        this.menu = menu;
+    }
 
-    double additionalPrice = position.getAdditionalIngredients().entrySet().stream()
-        .mapToDouble(entry -> menu.getIngredientPrices().getOrDefault(entry.getKey(), 0.0) * entry.getValue())
-        .sum();
+    @Override
+    public double visit(OrderPosition position) {
+        MenuDish dish = position.getDish();
+        double basePrice = menu.getShawarmas().getOrDefault(dish, 0.0);
 
-    double excludedPrice = position.getExcludedIngredients().stream()
-        .mapToDouble(ingredient -> menu.getIngredientPrices().getOrDefault(ingredient, 0.0))
-        .sum();
+        double additionalPrice = position.getAdditionalIngredients().entrySet().stream()
+                .mapToDouble(entry -> menu.getIngredients().getOrDefault(entry.getKey(), 0.0) * entry.getValue())
+                .sum();
 
-    return (basePrice + additionalPrice - excludedPrice) * position.getQuantity();
-  }
+        double excludedPrice = position.getExcludedIngredients().stream()
+                .mapToDouble(ingredient -> menu.getIngredients().getOrDefault(ingredient, 0.0))
+                .sum();
+
+        return (basePrice + additionalPrice - excludedPrice) * position.getQuantity();
+    }
 }

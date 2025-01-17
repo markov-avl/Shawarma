@@ -6,17 +6,17 @@ import ru.sccs.cooking.ingredient.Ingredient;
 import ru.sccs.recipe.RecipeIngredient;
 
 /**
- * Печь
+ * Кастрюля
  */
 @Data
 @AllArgsConstructor
-public class Oven implements CookingDevice {
+public class Pot implements CookingDevice {
 
     private String name;
 
     @Override
     public Ingredient cook(RecipeIngredient ingredient) {
-        System.out.printf("Запекается ингредиент '%s' в печи '%s'\n", ingredient.getName(), name);
+        System.out.printf("Варится ингредиент '%s' в кастрюле '%s'\n", ingredient.getName(), name);
         return new Ingredient(ingredient.getName());
     }
 }
