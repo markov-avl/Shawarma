@@ -9,7 +9,7 @@ import ru.sccs.cooking.ingredient.Ingredient;
  */
 @Data
 @AllArgsConstructor
-public class Grill implements Cooking {
+public class Grill implements CookingDevice {
 
   private String name;
 

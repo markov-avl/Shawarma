@@ -1,6 +1,6 @@
 package ru.sccs.command;
 
-interface Command {
+public interface Command {
 
   void execute();
 }

@@ -9,12 +9,12 @@ import ru.sccs.cooking.ingredient.Ingredient;
  */
 @Data
 @AllArgsConstructor
-public class Pan implements Cooking {
+public class Pan implements CookingDevice {
 
   private String name;
 
   @Override
   public void cook(Ingredient ingredient) {
-    System.out.println("Готовится игредиент " + ingredient.getName() + " на девайсе " + name);
+    System.out.println("Варится игредиент " + ingredient.getName() + " на девайсе " + name);
   }
 }

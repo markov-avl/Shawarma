@@ -10,7 +10,7 @@ import ru.sccs.cooking.ingredient.Ingredient;
  */
 @Data
 @AllArgsConstructor
-public class Oven implements Cooking {
+public class Oven implements CookingDevice {
 
   private String name;
 

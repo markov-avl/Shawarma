@@ -3,11 +3,14 @@ package ru.sccs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import ru.sccs.command.AddIngredientCommand;
 import ru.sccs.cooking.ingredient.Ingredient;
 import ru.sccs.mediator.ShawarmaMediator;
 import ru.sccs.model.Menu;
 import ru.sccs.model.Order;
 import ru.sccs.model.OrderPosition;
+import ru.sccs.model.Recipe;
+import ru.sccs.model.RecipeIngredient;
 import ru.sccs.model.Shawarma;
 import ru.sccs.visitor.PriceCalculator;
 
@@ -104,5 +107,8 @@ public class ShawarmaCookingControlSystem {
 
     ShawarmaMediator mediator = new ShawarmaMediator();
     mediator.cookShawarma(order);
+
+
+    new Recipe("Шаурма с говном").addStep(new AddIngredientCommand()).addStep(new AddIngredientCommand());
   }
 }
