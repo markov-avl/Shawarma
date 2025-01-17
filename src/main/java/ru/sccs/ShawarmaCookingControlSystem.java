@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import ru.sccs.cooking.ingredient.Ingredient;
+import ru.sccs.mediator.ShawarmaMediator;
 import ru.sccs.model.Menu;
 import ru.sccs.model.Order;
 import ru.sccs.model.OrderPosition;
@@ -75,6 +76,7 @@ public class ShawarmaCookingControlSystem {
             mushrooms2, mushrooms3, potato1, potato2))
     );
 
+    // Menu
     var menu = new Menu(
         Map.of(s1, 250d, s2, 300d, s3, 350d, s4, 450d, s5, 980d),
         Map.ofEntries(Map.entry(chicken1, 30d), Map.entry(chicken2, 25d), Map.entry(meat1, 33.5),
@@ -99,5 +101,8 @@ public class ShawarmaCookingControlSystem {
 
     PriceCalculator calculator = new PriceCalculator(menu);
     order.print(calculator);
+
+    ShawarmaMediator mediator = new ShawarmaMediator();
+    mediator.cookShawarma(order);
   }
 }

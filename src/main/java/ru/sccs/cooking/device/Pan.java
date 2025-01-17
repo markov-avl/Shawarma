@@ -1,12 +1,20 @@
 package ru.sccs.cooking.device;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import ru.sccs.cooking.ingredient.Ingredient;
+
 /**
  * Кастрюля
  */
-public class Pan implements CookingDevice {
+@Data
+@AllArgsConstructor
+public class Pan implements Cooking {
+
+  private String name;
 
   @Override
-  public void cook() {
-    System.out.println("Pan is cooking");
+  public void cook(Ingredient ingredient) {
+    System.out.println("Готовится игредиент " + ingredient.getName() + " на девайсе " + name);
   }
 }
