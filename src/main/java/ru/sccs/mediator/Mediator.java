@@ -4,7 +4,7 @@ import ru.sccs.model.Order;
 
 public interface Mediator {
 
-  void cookShawarma(Order order);
+  void cookOrder(Order order);
 
   void packageShawarma();
 

@@ -3,6 +3,7 @@ package ru.sccs.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.sccs.menu.MenuIngredient;
+import ru.sccs.observer.Observer;
 import ru.sccs.visitor.Visitor;
 
 import java.util.ArrayList;
@@ -14,6 +15,27 @@ import java.util.stream.Collectors;
 public class Order {
 
     private List<OrderPosition> positions = new ArrayList<>();
+
+    private List<Observer> observers = new ArrayList<>();
+
+    private String status; // Текущий статус заказа
+
+    // Уведомление всех наблюдателей
+    private void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(status);
+        }
+    }
+
+    // Установка статуса и уведомление наблюдателей
+    public void setStatus(String status) {
+        this.status = status;
+        notifyObservers();
+    }
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
 
     public Order(List<OrderPosition> positions) {
         this.positions = new ArrayList<>(positions);

@@ -5,6 +5,7 @@ import ru.sccs.actor.OrderManager;
 import ru.sccs.mediator.ShawarmaMediator;
 import ru.sccs.menu.Menu;
 import ru.sccs.model.Order;
+import ru.sccs.observer.Client;
 
 public class ShawarmaCookingControlSystem {
 
@@ -16,7 +17,11 @@ public class ShawarmaCookingControlSystem {
         Order order = orderManager.makeTestOrder();
         orderManager.printOrder(order);
 
+        Client client = new Client();
+
+        order.addObserver(client);
+
         ShawarmaMediator mediator = new ShawarmaMediator();
-        mediator.cookShawarma(order);
+        mediator.cookOrder(order);
     }
 }
