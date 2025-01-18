@@ -19,20 +19,20 @@ public class OrderManager {
     public Order makeTestOrder() {
         MenuDish dish1 = findDishByName("Шаурма с курицей и грибами");
         MenuDish dish2 = findDishByName("Шаурма классическая");
-        MenuIngredient cheese1 = findIngredientByName("Сыр Мацарелла");
-        MenuIngredient cheese2 = findIngredientByName("Сыр Маскарпоне");
+        MenuIngredient vegetable1 = findIngredientByName("Огурец свежий");
+        MenuIngredient vegetable2 = findIngredientByName("Помидор свежий");
 
         return new Order()
                 .addPosition(new OrderPosition().setQuantity(3).setDish(dish1))
                 .addPosition(new OrderPosition().setQuantity(2).setDish(dish2)
-                        .setAdditionalIngredients(Map.of(cheese1, 3))
+                        .setAdditionalIngredients(Map.of(vegetable1, 3))
                 )
                 .addPosition(new OrderPosition().setQuantity(2).setDish(dish2)
-                        .setExcludedIngredients(List.of(cheese2))
+                        .setExcludedIngredients(List.of(vegetable2))
                 )
                 .addPosition(new OrderPosition().setQuantity(2).setDish(dish2)
-                        .setAdditionalIngredients(Map.of(cheese2, 2))
-                        .setExcludedIngredients(List.of(cheese2))
+                        .setAdditionalIngredients(Map.of(vegetable2, 2))
+                        .setExcludedIngredients(List.of(vegetable2))
                 );
     }
 
@@ -42,7 +42,7 @@ public class OrderManager {
     }
 
     private MenuDish findDishByName(String name) {
-        return menu.getShawarmas().keySet().stream()
+        return menu.getDishes().keySet().stream()
                 .filter(s -> s.getName().equals(name))
                 .findAny()
                 .orElseThrow();

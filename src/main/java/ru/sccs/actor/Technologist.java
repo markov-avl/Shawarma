@@ -7,7 +7,7 @@ import ru.sccs.menu.MenuIngredient;
 import java.util.List;
 import java.util.Map;
 
-public class MenuFormer {
+public class Technologist {
 
     public static Menu createMenu() {
         // Лаваши
@@ -15,8 +15,8 @@ public class MenuFormer {
         var pita2 = new MenuIngredient("Пита мексиканская");
 
         // Мясо
-        var chicken1 = new MenuIngredient("Курица жареная");
-        var chicken2 = new MenuIngredient("Курица вареная");
+        var chicken1 = new MenuIngredient("Жареная курица");
+        var chicken2 = new MenuIngredient("Вареная курица");
         var meat1 = new MenuIngredient("Свинной фарш");
         var kebab1 = new MenuIngredient("Свинной шашлык");
 
@@ -25,7 +25,7 @@ public class MenuFormer {
         var cucumber2 = new MenuIngredient("Огурец малосольный");
         var tomato1 = new MenuIngredient("Помидор свежий");
         var tomato2 = new MenuIngredient("Помидор малосольный");
-        var potato1 = new MenuIngredient("Картошка жареная");
+        var potato1 = new MenuIngredient("Жареный картофель");
         var potato2 = new MenuIngredient("Картошка пюре");
 
         // Сыры
@@ -89,6 +89,14 @@ public class MenuFormer {
                         Map.entry(potato2, 18.4)
                 )
         );
+    }
+
+    public static void printMenu(Menu menu) {
+        System.out.println("----------------- Меню -----------------");
+        menu.printDishesPrices();
+        System.out.println("----------------------------------------");
+        menu.printIngredientPrices();
+        System.out.println("----------------------------------------");
     }
 
 }

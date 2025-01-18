@@ -15,7 +15,7 @@ public class PriceCalculator implements Visitor {
     @Override
     public double visit(OrderPosition position) {
         MenuDish dish = position.getDish();
-        double basePrice = menu.getShawarmas().getOrDefault(dish, 0.0);
+        double basePrice = menu.getDishes().getOrDefault(dish, 0.0);
 
         double additionalPrice = position.getAdditionalIngredients().entrySet().stream()
                 .mapToDouble(entry -> menu.getIngredients().getOrDefault(entry.getKey(), 0.0) * entry.getValue())
