@@ -19,4 +19,5 @@ public class Pot implements CookingDevice {
         System.out.printf("Варится ингредиент '%s' в кастрюле '%s'\n", ingredient.getName(), name);
         return new Ingredient(ingredient.getName());
     }
+
 }

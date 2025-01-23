@@ -1,9 +1,9 @@
 package ru.sccs.builder;
 
 import lombok.RequiredArgsConstructor;
-import ru.sccs.menu.MenuDish;
-import ru.sccs.menu.MenuIngredient;
-import ru.sccs.model.OrderPosition;
+import ru.sccs.model.menu.MenuDish;
+import ru.sccs.model.menu.MenuIngredient;
+import ru.sccs.model.order.OrderPosition;
 
 import java.util.HashMap;
 import java.util.HashSet;

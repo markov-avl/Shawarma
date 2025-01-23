@@ -1,7 +1,7 @@
 package ru.sccs.builder;
 
-import ru.sccs.model.Order;
-import ru.sccs.model.OrderPosition;
+import ru.sccs.model.order.Order;
+import ru.sccs.model.order.OrderPosition;
 
 import java.util.ArrayList;
 import java.util.List;

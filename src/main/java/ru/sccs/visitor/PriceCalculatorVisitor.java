@@ -4,11 +4,11 @@ import ru.sccs.model.menu.Menu;
 import ru.sccs.model.menu.MenuDish;
 import ru.sccs.model.order.OrderPosition;
 
-public class PriceCalculator implements Visitor {
+public class PriceCalculatorVisitor implements Visitor {
 
     private final Menu menu;
 
-    public PriceCalculator(Menu menu) {
+    public PriceCalculatorVisitor(Menu menu) {
         this.menu = menu;
     }
 

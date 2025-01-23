@@ -19,4 +19,5 @@ public class Pan implements CookingDevice {
         System.out.printf("Жарится ингредиент '%s' на сковороде '%s'\n", ingredient.getName(), name);
         return new Ingredient(ingredient.getName());
     }
+
 }

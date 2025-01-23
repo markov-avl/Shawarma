@@ -7,7 +7,7 @@ import ru.sccs.model.menu.Menu;
 import ru.sccs.model.menu.MenuDish;
 import ru.sccs.model.menu.MenuIngredient;
 import ru.sccs.model.order.Order;
-import ru.sccs.visitor.PriceCalculator;
+import ru.sccs.visitor.PriceCalculatorVisitor;
 
 
 @RequiredArgsConstructor
@@ -45,7 +45,7 @@ public class OrderManager {
     }
 
     public void printOrder(Order order) {
-        PriceCalculator calculator = new PriceCalculator(menu);
+        PriceCalculatorVisitor calculator = new PriceCalculatorVisitor(menu);
         order.print(calculator);
     }
 
