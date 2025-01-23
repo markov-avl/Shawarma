@@ -1,20 +1,23 @@
 package ru.sccs.command;
 
+import ru.sccs.kitchen.cooking.KitchenFacade;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Invoker
 public class Chef {
-  private List<Command> commands = new ArrayList<>();
 
-  public void addCommand(Command command) {
-    commands.add(command);
-  }
+    private final List<Command> commands = new ArrayList<>();
 
-  public void prepareShawarma() {
-    for (Command command : commands) {
-      command.execute();
+    public void addCommand(Command command) {
+        commands.add(command);
     }
-    commands.clear(); // Очистка списка команд после выполнения
-  }
+
+    public void prepareShawarma(KitchenFacade kitchenFacade) {
+        for (Command command : commands) {
+            command.execute(kitchenFacade);
+        }
+        commands.clear();
+    }
 }

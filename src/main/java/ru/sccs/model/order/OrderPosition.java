@@ -1,9 +1,9 @@
-package ru.sccs.model;
+package ru.sccs.model.order;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import ru.sccs.menu.MenuDish;
-import ru.sccs.menu.MenuIngredient;
+import ru.sccs.model.menu.MenuDish;
+import ru.sccs.model.menu.MenuIngredient;
 
 import java.util.ArrayList;
 import java.util.HashMap;

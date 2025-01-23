@@ -4,7 +4,6 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.sccs.cooking.ingredient.Ingredient;
 
 @Data
 @AllArgsConstructor

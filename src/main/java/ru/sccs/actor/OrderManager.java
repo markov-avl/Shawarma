@@ -1,11 +1,11 @@
 package ru.sccs.actor;
 
 import lombok.RequiredArgsConstructor;
-import ru.sccs.menu.Menu;
-import ru.sccs.menu.MenuDish;
-import ru.sccs.menu.MenuIngredient;
-import ru.sccs.model.Order;
-import ru.sccs.model.OrderPosition;
+import ru.sccs.model.menu.Menu;
+import ru.sccs.model.menu.MenuDish;
+import ru.sccs.model.menu.MenuIngredient;
+import ru.sccs.model.order.Order;
+import ru.sccs.model.order.OrderPosition;
 import ru.sccs.visitor.PriceCalculator;
 
 import java.util.List;

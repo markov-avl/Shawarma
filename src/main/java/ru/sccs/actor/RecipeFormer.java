@@ -1,15 +1,14 @@
 package ru.sccs.actor;
 
-import ru.sccs.command.CookIngredientCommand;
+import ru.sccs.command.BakeIngredientCommand;
+import ru.sccs.command.BoilIngredientCommand;
+import ru.sccs.command.FryIngredientCommand;
 import ru.sccs.command.TakeIngredientCommand;
-import ru.sccs.cooking.device.Oven;
-import ru.sccs.cooking.device.Pan;
-import ru.sccs.cooking.device.Pot;
-import ru.sccs.model.Order;
-import ru.sccs.model.OrderPosition;
-import ru.sccs.recipe.Recipe;
-import ru.sccs.recipe.RecipeIngredient;
-import ru.sccs.recipe.RecipeStep;
+import ru.sccs.model.order.Order;
+import ru.sccs.model.order.OrderPosition;
+import ru.sccs.model.recipe.Recipe;
+import ru.sccs.model.recipe.RecipeIngredient;
+import ru.sccs.model.recipe.RecipeStep;
 
 import java.util.List;
 import java.util.Map;
@@ -44,13 +43,13 @@ public class RecipeFormer {
 
     private static RecipeStep stepFor(RecipeIngredient ingredient) {
         if (ingredient.getName().startsWith("Вар")) {
-            return new RecipeStep(Pot.class, device -> new CookIngredientCommand(device, ingredient));
+            return new RecipeStep(new BoilIngredientCommand(ingredient));
         } else if (ingredient.getName().startsWith("Запеч")) {
-            return new RecipeStep(Oven.class, device -> new CookIngredientCommand(device, ingredient));
+            return new RecipeStep(new BakeIngredientCommand(ingredient));
         } else if (ingredient.getName().startsWith("Жар")) {
-            return new RecipeStep(Pan.class, device -> new CookIngredientCommand(device, ingredient));
+            return new RecipeStep(new FryIngredientCommand(ingredient));
         }
-        return new RecipeStep(null, device -> new TakeIngredientCommand(ingredient));
+        return new RecipeStep(new TakeIngredientCommand(ingredient));
     }
 
 }

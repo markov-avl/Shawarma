@@ -2,9 +2,9 @@ package ru.sccs;
 
 import ru.sccs.actor.Technologist;
 import ru.sccs.actor.OrderManager;
-import ru.sccs.mediator.ShawarmaMediator;
-import ru.sccs.menu.Menu;
-import ru.sccs.model.Order;
+import ru.sccs.kitchen.mediator.KitchenMediator;
+import ru.sccs.model.menu.Menu;
+import ru.sccs.model.order.Order;
 import ru.sccs.observer.Client;
 
 public class ShawarmaCookingControlSystem {
@@ -21,7 +21,7 @@ public class ShawarmaCookingControlSystem {
 
         order.addObserver(client);
 
-        ShawarmaMediator mediator = new ShawarmaMediator();
+        KitchenMediator mediator = new KitchenMediator();
         mediator.cookOrder(order);
     }
 }

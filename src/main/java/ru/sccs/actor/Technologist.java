@@ -1,8 +1,8 @@
 package ru.sccs.actor;
 
-import ru.sccs.menu.Menu;
-import ru.sccs.menu.MenuDish;
-import ru.sccs.menu.MenuIngredient;
+import ru.sccs.model.menu.Menu;
+import ru.sccs.model.menu.MenuDish;
+import ru.sccs.model.menu.MenuIngredient;
 
 import java.util.List;
 import java.util.Map;

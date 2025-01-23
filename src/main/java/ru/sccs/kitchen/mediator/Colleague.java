@@ -1,4 +1,4 @@
-package ru.sccs.mediator;
+package ru.sccs.kitchen.mediator;
 
 public abstract class Colleague {
 

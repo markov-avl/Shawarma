@@ -1,6 +1,6 @@
-package ru.sccs.mediator;
+package ru.sccs.kitchen.mediator;
 
-import ru.sccs.model.Order;
+import ru.sccs.model.order.Order;
 
 public interface Mediator {
 

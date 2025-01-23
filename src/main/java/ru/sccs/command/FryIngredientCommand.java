@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import ru.sccs.kitchen.cooking.KitchenFacade;
 import ru.sccs.model.recipe.RecipeIngredient;
 
-// Команда для взятия ингредиента
+// Команда для обжарки ингредиента
 @AllArgsConstructor
-public class TakeIngredientCommand implements Command {
+public class FryIngredientCommand implements Command {
 
     private RecipeIngredient ingredient;
 
     @Override
     public void execute(KitchenFacade kitchenFacade) {
-        System.out.printf("Взят ингредиент '%s' (%d г.)\n", ingredient.getName(), ingredient.getGram());
+        kitchenFacade.fry(ingredient);
     }
 }

@@ -1,10 +1,10 @@
-package ru.sccs.factory;
+package ru.sccs.kitchen.cooking;
 
 import lombok.SneakyThrows;
-import ru.sccs.cooking.device.CookingDevice;
-import ru.sccs.cooking.device.Pot;
-import ru.sccs.cooking.device.Oven;
-import ru.sccs.cooking.device.Pan;
+import ru.sccs.kitchen.cooking.device.CookingDevice;
+import ru.sccs.kitchen.cooking.device.Pot;
+import ru.sccs.kitchen.cooking.device.Oven;
+import ru.sccs.kitchen.cooking.device.Pan;
 
 import java.util.List;
 

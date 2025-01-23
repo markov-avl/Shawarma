@@ -1,4 +1,4 @@
-package ru.sccs.menu;
+package ru.sccs.model.menu;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

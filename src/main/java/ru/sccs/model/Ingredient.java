@@ -1,4 +1,4 @@
-package ru.sccs.cooking.ingredient;
+package ru.sccs.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

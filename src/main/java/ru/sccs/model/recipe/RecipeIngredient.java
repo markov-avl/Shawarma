@@ -1,4 +1,4 @@
-package ru.sccs.recipe;
+package ru.sccs.model.recipe;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

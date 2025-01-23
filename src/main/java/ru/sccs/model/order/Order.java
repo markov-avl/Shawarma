@@ -1,8 +1,8 @@
-package ru.sccs.model;
+package ru.sccs.model.order;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.sccs.menu.MenuIngredient;
+import ru.sccs.model.menu.MenuIngredient;
 import ru.sccs.observer.Observer;
 import ru.sccs.visitor.Visitor;
 

@@ -1,8 +1,8 @@
 package ru.sccs.visitor;
 
-import ru.sccs.menu.Menu;
-import ru.sccs.menu.MenuDish;
-import ru.sccs.model.OrderPosition;
+import ru.sccs.model.menu.Menu;
+import ru.sccs.model.menu.MenuDish;
+import ru.sccs.model.order.OrderPosition;
 
 public class PriceCalculator implements Visitor {
 

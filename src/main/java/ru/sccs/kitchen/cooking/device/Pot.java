@@ -1,9 +1,9 @@
-package ru.sccs.cooking.device;
+package ru.sccs.kitchen.cooking.device;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import ru.sccs.cooking.ingredient.Ingredient;
-import ru.sccs.recipe.RecipeIngredient;
+import ru.sccs.model.Ingredient;
+import ru.sccs.model.recipe.RecipeIngredient;
 
 /**
  * Кастрюля
