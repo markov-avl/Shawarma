@@ -24,4 +24,5 @@ public class DeviceFactory {
                 .findAny()
                 .orElseThrow();
     }
+
 }

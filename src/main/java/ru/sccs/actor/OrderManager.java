@@ -1,15 +1,14 @@
 package ru.sccs.actor;
 
 import lombok.RequiredArgsConstructor;
+import ru.sccs.builder.OrderBuilder;
+import ru.sccs.builder.OrderPositionBuilder;
 import ru.sccs.model.menu.Menu;
 import ru.sccs.model.menu.MenuDish;
 import ru.sccs.model.menu.MenuIngredient;
 import ru.sccs.model.order.Order;
-import ru.sccs.model.order.OrderPosition;
 import ru.sccs.visitor.PriceCalculator;
 
-import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 public class OrderManager {
@@ -22,18 +21,27 @@ public class OrderManager {
         MenuIngredient vegetable1 = findIngredientByName("Огурец свежий");
         MenuIngredient vegetable2 = findIngredientByName("Помидор свежий");
 
-        return new Order()
-                .addPosition(new OrderPosition().setQuantity(3).setDish(dish1))
-                .addPosition(new OrderPosition().setQuantity(2).setDish(dish2)
-                        .setAdditionalIngredients(Map.of(vegetable1, 3))
+        return new OrderBuilder()
+                .addPosition(new OrderPositionBuilder(dish1)
+                        .plus(2)
+                        .build()
                 )
-                .addPosition(new OrderPosition().setQuantity(2).setDish(dish2)
-                        .setExcludedIngredients(List.of(vegetable2))
+                .addPosition(new OrderPositionBuilder(dish1)
+                        .plus()
+                        .addIngredient(vegetable1, 3)
+                        .build()
                 )
-                .addPosition(new OrderPosition().setQuantity(2).setDish(dish2)
-                        .setAdditionalIngredients(Map.of(vegetable2, 2))
-                        .setExcludedIngredients(List.of(vegetable2))
-                );
+                .addPosition(new OrderPositionBuilder(dish2)
+                        .minus()
+                        .excludeIngredient(vegetable2)
+                        .build()
+                )
+                .addPosition(new OrderPositionBuilder(dish2)
+                        .addIngredient(vegetable2, 2)
+                        .excludeIngredient(vegetable2)
+                        .build()
+                )
+                .build();
     }
 
     public void printOrder(Order order) {
@@ -54,6 +62,5 @@ public class OrderManager {
                 .findAny()
                 .orElseThrow();
     }
-
 
 }
