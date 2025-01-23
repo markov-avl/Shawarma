@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import ru.sccs.model.menu.MenuIngredient;
 import ru.sccs.observer.Observer;
-import ru.sccs.visitor.Visitor;
+import ru.sccs.visitor.CostCalculatorOrderVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class Order {
         observers.add(observer);
     }
 
-    public void print(Visitor visitor) {
+    public void print(CostCalculatorOrderVisitor calculator) {
         if (positions == null || positions.isEmpty()) {
             System.out.println("Заказ пуст");
             return;
@@ -45,7 +45,7 @@ public class Order {
 
         System.out.println("--- Заказ ---");
         int index = 1;
-        double totalCost = 0;
+
         for (OrderPosition position : positions) {
             String addedIngredients = position.getAdditionalIngredients().entrySet().stream()
                     .map(e -> e.getKey().getName() + " x" + e.getValue())
@@ -54,9 +54,6 @@ public class Order {
                     .map(MenuIngredient::getName)
                     .collect(Collectors.joining(", "));
 
-            double price = visitor.visit(position);
-            totalCost += price;
-
             System.out.printf("%d. %s x%d", index++, position.getDish().getName(), position.getQuantity());
             if (!addedIngredients.isEmpty()) {
                 System.out.printf(" [+ %s]", addedIngredients);
@@ -64,9 +61,10 @@ public class Order {
             if (!removedIngredients.isEmpty()) {
                 System.out.printf(" [- %s]", removedIngredients);
             }
-            System.out.printf(" -> Цена: %.2f\n", price);
+            System.out.printf(" -> Цена: %.2f\n", calculator.visit(position));
         }
         System.out.println("----------------------");
-        System.out.printf("Итоговая стоимость заказа: %.2f\n", totalCost);
+        System.out.printf("Итоговая стоимость заказа: %.2f\n", calculator.visit(this));
     }
+
 }

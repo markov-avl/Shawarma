@@ -13,13 +13,12 @@ public class ShawarmaCookingControlSystem {
         Menu menu = Technologist.createMenu();
         Technologist.printMenu(menu);
 
-        OrderManager orderManager = new OrderManager(menu);
-        Order order = orderManager.makeTestOrder();
-        orderManager.printOrder(order);
-
         Client client = new Client();
+        OrderManager orderManager = new OrderManager(menu);
 
+        Order order = orderManager.makeTestOrder();
         order.addObserver(client);
+        orderManager.printOrder(order);
 
         KitchenMediator mediator = new KitchenMediator();
         mediator.cookOrder(order);
