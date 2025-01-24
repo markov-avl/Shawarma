@@ -11,19 +11,21 @@ import ru.sccs.printer.OrderPrinter;
 
 public class ShawarmaCookingControlSystem {
 
+    private static final Menu menu = Technologist.createMenu();
+
+    private static final OrderManager orderManager = new OrderManager(menu);
+
+    private static final OrderPrinter orderPrinter = new OrderPrinter(menu);
+
+    private static final KitchenMediator kitchen = new KitchenMediator();
+
     public static void main(String[] args) {
-        Menu menu = Technologist.createMenu();
         MenuPrinter.print(menu);
 
         Client client = new Client();
-        OrderManager orderManager = new OrderManager(menu);
-        OrderPrinter orderPrinter = new OrderPrinter(menu);
-
-        Order order = orderManager.makeTestOrder();
+        Order order = orderManager.makeTestOrderFor(client);
         orderPrinter.print(order);
-        order.addObserver(client);
 
-        KitchenMediator mediator = new KitchenMediator();
-        mediator.cookOrder(order);
+        kitchen.cookOrder(order);
     }
 }

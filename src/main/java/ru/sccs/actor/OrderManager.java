@@ -7,6 +7,7 @@ import ru.sccs.model.menu.Menu;
 import ru.sccs.model.menu.MenuDish;
 import ru.sccs.model.menu.MenuIngredient;
 import ru.sccs.model.order.Order;
+import ru.sccs.observer.Observer;
 
 
 @RequiredArgsConstructor
@@ -41,6 +42,12 @@ public class OrderManager {
                         .build()
                 )
                 .build();
+    }
+
+    public Order makeTestOrderFor(Observer observer) {
+        Order order = makeTestOrder();
+        order.addObserver(observer);
+        return order;
     }
 
     private MenuDish findDishByName(String name) {
