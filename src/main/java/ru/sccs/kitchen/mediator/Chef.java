@@ -1,13 +1,12 @@
 package ru.sccs.kitchen.mediator;
 
+import java.util.ArrayList;
+import java.util.List;
 import ru.sccs.command.Command;
 import ru.sccs.kitchen.cooking.KitchenFacade;
 
-import java.util.ArrayList;
-import java.util.List;
-
 // Invoker
-public class Chef {
+public class Chef extends Colleague {
 
     private final List<Command> commands = new ArrayList<>();
 

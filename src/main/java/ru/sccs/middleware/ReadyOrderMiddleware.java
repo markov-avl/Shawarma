@@ -1,8 +1,13 @@
 package ru.sccs.middleware;
 
+import lombok.AllArgsConstructor;
+import ru.sccs.kitchen.mediator.Packer;
 import ru.sccs.model.order.Order;
 
+@AllArgsConstructor
 public class ReadyOrderMiddleware extends Middleware {
+
+  private Packer packer;
 
   @Override
   protected boolean canHandle(Order order) {
@@ -11,7 +16,6 @@ public class ReadyOrderMiddleware extends Middleware {
 
   @Override
   protected void process(Order order) {
-    System.out.println("Заказ готов");
-    order.setStatus("Можно забирать");
+    packer.pack(order);
   }
 }

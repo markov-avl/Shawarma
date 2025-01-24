@@ -5,8 +5,4 @@ import ru.sccs.model.order.Order;
 public interface Mediator {
 
   void cookOrder(Order order);
-
-  void packageShawarma();
-
-  void packageOrder();
 }

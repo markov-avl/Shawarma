@@ -11,7 +11,6 @@ public class NewOrderMiddleware extends Middleware {
 
   @Override
   protected void process(Order order) {
-    System.out.println("Новый заказ принят");
     order.setStatus("Готовится");
   }
 }

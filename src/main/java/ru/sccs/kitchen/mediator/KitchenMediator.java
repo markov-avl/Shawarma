@@ -10,30 +10,23 @@ import ru.sccs.middleware.NewOrderMiddleware;
 import ru.sccs.middleware.ReadyOrderMiddleware;
 import ru.sccs.model.order.Order;
 
-@NoArgsConstructor
 @AllArgsConstructor
 public class KitchenMediator implements Mediator {
 
-    private KitchenFacade kitchenFacade = new KitchenFacade();
+    private KitchenFacade kitchenFacade;
 
-    private Chef chef = new Chef();
+    private Chef chef;
+
+    private Packer packer;
 
     public void cookOrder(Order order) {
         NewOrderMiddleware newOrderMiddleware = new NewOrderMiddleware();
         CookingOrderMiddleware cookingOrderMiddleware = new CookingOrderMiddleware(chef, kitchenFacade);
-        ReadyOrderMiddleware readyOrderMiddleware = new ReadyOrderMiddleware();
+        ReadyOrderMiddleware readyOrderMiddleware = new ReadyOrderMiddleware(packer);
 
         newOrderMiddleware.setNext(cookingOrderMiddleware);
         cookingOrderMiddleware.setNext(readyOrderMiddleware);
 
         newOrderMiddleware.handle(order);
-    }
-
-    @Override
-    public void packageShawarma() {
-    }
-
-    @Override
-    public void packageOrder() {
     }
 }
