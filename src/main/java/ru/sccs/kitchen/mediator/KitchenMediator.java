@@ -3,7 +3,6 @@ package ru.sccs.kitchen.mediator;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import ru.sccs.actor.RecipeFormer;
-import ru.sccs.command.Chef;
 import ru.sccs.command.PackShawarmaCommand;
 import ru.sccs.kitchen.cooking.KitchenFacade;
 import ru.sccs.model.order.Order;

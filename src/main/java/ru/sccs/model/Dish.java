@@ -5,12 +5,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class Ingredient {
+public class Dish {
 
     private String name;
-
-    public String toString() {
-        return name;
-    }
 
 }

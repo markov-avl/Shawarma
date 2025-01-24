@@ -1,5 +1,6 @@
-package ru.sccs.command;
+package ru.sccs.kitchen.mediator;
 
+import ru.sccs.command.Command;
 import ru.sccs.kitchen.cooking.KitchenFacade;
 
 import java.util.ArrayList;

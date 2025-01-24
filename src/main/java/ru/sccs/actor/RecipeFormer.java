@@ -1,8 +1,5 @@
 package ru.sccs.actor;
 
-import ru.sccs.command.BakeIngredientCommand;
-import ru.sccs.command.BoilIngredientCommand;
-import ru.sccs.command.FryIngredientCommand;
 import ru.sccs.command.TakeIngredientCommand;
 import ru.sccs.model.order.Order;
 import ru.sccs.model.order.OrderPosition;
@@ -17,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class RecipeFormer {
 
-    private static final Integer DEFAULT_GRAM = 50;
+    private static final Integer DEFAULT_GRAMS = 50;
 
     public static Map<OrderPosition, Recipe> recipesOf(Order order) {
         return order.getPositions().stream()
@@ -28,9 +25,9 @@ public class RecipeFormer {
         List<RecipeIngredient> ingredients = position.getDish().getComposition().stream()
                 .filter(ingredient -> !position.getExcludedIngredients().contains(ingredient))
                 .map(ingredient -> {
-                    Integer additionalPortions = position.getAdditionalIngredients().getOrDefault(ingredient, 0);
-                    Integer gram = DEFAULT_GRAM * (1 + additionalPortions);
-                    return new RecipeIngredient(ingredient.getName(), gram);
+                    int additionalPortions = position.getAdditionalIngredients().getOrDefault(ingredient, 0);
+                    int grams = DEFAULT_GRAMS * (1 + additionalPortions);
+                    return new RecipeIngredient(ingredient.getName(), grams);
                 })
                 .toList();
 
@@ -42,13 +39,6 @@ public class RecipeFormer {
     }
 
     private static RecipeStep stepFor(RecipeIngredient ingredient) {
-        if (ingredient.getName().startsWith("Вар")) {
-            return new RecipeStep(new BoilIngredientCommand(ingredient));
-        } else if (ingredient.getName().startsWith("Запеч")) {
-            return new RecipeStep(new BakeIngredientCommand(ingredient));
-        } else if (ingredient.getName().startsWith("Жар")) {
-            return new RecipeStep(new FryIngredientCommand(ingredient));
-        }
         return new RecipeStep(new TakeIngredientCommand(ingredient));
     }
 
