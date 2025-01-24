@@ -91,12 +91,4 @@ public class Technologist {
         );
     }
 
-    public static void printMenu(Menu menu) {
-        System.out.println("----------------- Меню -----------------");
-        menu.printDishesPrices();
-        System.out.println("----------------------------------------");
-        menu.printIngredientPrices();
-        System.out.println("----------------------------------------");
-    }
-
 }

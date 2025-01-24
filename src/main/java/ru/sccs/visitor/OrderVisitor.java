@@ -5,14 +5,14 @@ import ru.sccs.model.menu.MenuIngredient;
 import ru.sccs.model.order.Order;
 import ru.sccs.model.order.OrderPosition;
 
-public interface OrderVisitor {
+public interface OrderVisitor<T> {
 
-    Double visit(Order order);
+    T visit(Order order);
 
-    Double visit(OrderPosition position);
+    T visit(OrderPosition position);
 
-    Double visit(MenuDish menuDish);
+    T visit(MenuDish menuDish);
 
-    Double visit(MenuIngredient ingredient);
+    T visit(MenuIngredient ingredient);
 
 }

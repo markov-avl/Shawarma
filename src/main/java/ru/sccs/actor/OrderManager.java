@@ -7,7 +7,6 @@ import ru.sccs.model.menu.Menu;
 import ru.sccs.model.menu.MenuDish;
 import ru.sccs.model.menu.MenuIngredient;
 import ru.sccs.model.order.Order;
-import ru.sccs.visitor.CostCalculatorOrderVisitor;
 
 
 @RequiredArgsConstructor
@@ -42,11 +41,6 @@ public class OrderManager {
                         .build()
                 )
                 .build();
-    }
-
-    public void printOrder(Order order) {
-        CostCalculatorOrderVisitor calculator = new CostCalculatorOrderVisitor(menu);
-        order.print(calculator);
     }
 
     private MenuDish findDishByName(String name) {

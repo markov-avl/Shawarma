@@ -8,7 +8,7 @@ import ru.sccs.model.order.Order;
 import ru.sccs.model.order.OrderPosition;
 
 @RequiredArgsConstructor
-public class CostCalculatorOrderVisitor implements OrderVisitor {
+public class CostCalculatorOrderVisitor implements OrderVisitor<Double> {
 
     private final Menu menu;
 
