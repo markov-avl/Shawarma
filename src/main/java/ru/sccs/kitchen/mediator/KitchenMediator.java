@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 import ru.sccs.actor.RecipeFormer;
 import ru.sccs.command.PackShawarmaCommand;
 import ru.sccs.kitchen.cooking.KitchenFacade;
+import ru.sccs.middleware.CookingOrderMiddleware;
+import ru.sccs.middleware.NewOrderMiddleware;
+import ru.sccs.middleware.ReadyOrderMiddleware;
 import ru.sccs.model.order.Order;
 
 @NoArgsConstructor
@@ -16,16 +19,14 @@ public class KitchenMediator implements Mediator {
     private Chef chef = new Chef();
 
     public void cookOrder(Order order) {
-        order.setStatus("Готовится");
-        RecipeFormer.recipesOf(order).forEach((orderPosition, recipe) -> {
-            recipe.getSteps().forEach(step -> chef.addCommand(step.getCommand()));
-            chef.addCommand(new PackShawarmaCommand());
+        NewOrderMiddleware newOrderMiddleware = new NewOrderMiddleware();
+        CookingOrderMiddleware cookingOrderMiddleware = new CookingOrderMiddleware(chef, kitchenFacade);
+        ReadyOrderMiddleware readyOrderMiddleware = new ReadyOrderMiddleware();
 
-            System.out.printf("\nПриготовление '%s' в количестве %d шт.\n",
-                    orderPosition.getDish().getName(), orderPosition.getQuantity());
-            chef.prepareShawarma(kitchenFacade);
-        });
-        order.setStatus("Готов");
+        newOrderMiddleware.setNext(cookingOrderMiddleware);
+        cookingOrderMiddleware.setNext(readyOrderMiddleware);
+
+        newOrderMiddleware.handle(order);
     }
 
     @Override

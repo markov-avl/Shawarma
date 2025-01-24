@@ -15,7 +15,7 @@ public class Order {
 
     private List<Observer> observers = new ArrayList<>();
 
-    private String status = "NEW"; // Текущий статус заказа
+    private String status = "Новый"; // Текущий статус заказа
 
     // Уведомление всех наблюдателей
     private void notifyObservers() {
